@@ -1,9 +1,10 @@
 #include "RobotThread.h"
 
 namespace server {
-RobotThread::RobotThread(int argc, char** pArgv)
+RobotThread::RobotThread(int argc, char** pArgv, const char * topic)
     :	m_Init_argc(argc),
-        m_pInit_argv(pArgv)
+        m_pInit_argv(pArgv),
+        m_topic(topic)
 {/** Constructor for the robot thread **/}
 
 RobotThread::~RobotThread()
@@ -28,8 +29,7 @@ bool RobotThread::init()
     ros::Time::init();
     ros::NodeHandle nh;
     sim_velocity  = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 100);
-    pose_listener = nh.subscribe("/odom", 10, &RobotThread::poseCallback, this);
-    start();
+    pose_listener = nh.subscribe(m_topic, 10, &RobotThread::poseCallback, this);
     return true;
 }//set up the ros toys.
 
@@ -45,7 +45,7 @@ void RobotThread::poseCallback(nav_msgs::Odometry msg)
 
 void RobotThread::run()
 {
-    ros::Rate loop_rate(1);
+    ros::Rate loop_rate(100);
     while (ros::ok())
     {
         geometry_msgs::Twist cmd_msg;
@@ -63,6 +63,7 @@ void RobotThread::SetSpeed(double speed, double angle)
     m_speed = speed;
     m_angle = angle;
 }//set the speed of the robot.
+
 double RobotThread::getXSpeed(){ return m_speed; }
 double RobotThread::getASpeed(){ return m_angle; }
 

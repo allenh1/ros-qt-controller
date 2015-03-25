@@ -19,7 +19,7 @@ namespace server {
 class RobotThread : public QThread {
 	Q_OBJECT
 public:
-    RobotThread(int argc, char **pArgv);
+    RobotThread(int argc, char **pArgv, const char * topic  = "/odom");
     virtual ~RobotThread();
 
     double getXPos();
@@ -40,6 +40,7 @@ public:
 private:
     int m_Init_argc;
     char** m_pInit_argv;
+    const char * m_topic;
 
     double m_speed;
     double m_angle;
@@ -53,10 +54,9 @@ private:
 
     QList<double> ranges;
 
-    ros::Publisher sim_velocity;
-
     ros::Subscriber pose_listener;
     ros::Subscriber scan_listener;
+    ros::Publisher  sim_velocity;
 };
 }//end namespace
 #endif
