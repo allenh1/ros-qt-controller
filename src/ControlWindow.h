@@ -1,10 +1,6 @@
 #ifndef CONTROL_WINDOW_H
 #define CONTROL_WINDOW_H
-#include <QMainWindow>
-#include <QList>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QtAlgorithms>
+#include <QtWidgets>
 #include <QPushButton>
 #include <QString>
 #include <QVBoxLayout>
@@ -12,6 +8,7 @@
 #include <QLabel>
 #include <QTextStream>
 #include <QLineEdit>
+#include <QPalette>
 #include <QIcon>
 #include "RobotThread.h"
 

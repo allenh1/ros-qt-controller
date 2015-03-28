@@ -1,5 +1,4 @@
 #include "ControlWindow.h"
-#include <QPalette>
 
 namespace server{
 ControlWindow::ControlWindow(int argc, char **argv, QWidget *parent)
