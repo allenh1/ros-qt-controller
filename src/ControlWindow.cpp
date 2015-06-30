@@ -52,19 +52,19 @@ ControlWindow::ControlWindow(int argc, char **argv, QWidget *parent)
     p_aLayout = new QHBoxLayout();
 
     p_xLabel = new QLabel();
-    p_xLabel->setText("X:");
+    p_xLabel->setText(tr("X:"));
     p_xDisplay = new QLineEdit();
-    p_xDisplay->setText("0.0");
+    p_xDisplay->setText(tr("0.0"));
 
     p_yLabel = new QLabel();
-    p_yLabel->setText("Y:");
+    p_yLabel->setText(tr("Y:");
     p_yDisplay = new QLineEdit();
-    p_yDisplay->setText("0.0");
+    p_yDisplay->setText(tr("0.0"));
 
     p_aLabel = new QLabel();
-    p_aLabel->setText("Theta: ");
+    p_aLabel->setText(tr("Theta: "));
     p_aDisplay = new QLineEdit();
-    p_aDisplay->setText("0.0");
+    p_aDisplay->setText(tr("0.0"));
 
     p_xLayout->addWidget(p_xLabel);
     p_xLayout->addWidget(p_xDisplay);
