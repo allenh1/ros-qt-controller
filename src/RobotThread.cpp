@@ -34,7 +34,7 @@ bool RobotThread::init()
 }//set up the ros toys.
 
 /** For a real robot **/
-void RobotThread::poseCallback(nav_msgs::Odometry msg)
+void RobotThread::poseCallback(const nav_msgs::Odometry & msg)
 {
     m_xPos = msg.pose.pose.position.x;
     m_yPos = msg.pose.pose.position.y;

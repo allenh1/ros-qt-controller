@@ -30,7 +30,7 @@ public:
 
     bool init();
 
-    void poseCallback(nav_msgs::Odometry msg);
+    void poseCallback(const nav_msgs::Odometry & msg);
 
 	void SetSpeed(double speed, double angle);
     void setPose(QList<double> to_set);
