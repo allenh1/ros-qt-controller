@@ -46,15 +46,21 @@ void RobotThread::poseCallback(const nav_msgs::Odometry & msg)
 void RobotThread::run()
 {
     ros::Rate loop_rate(100);
+    QMutex * pMutex;
     while (ros::ok())
     {
+        pMutex = new QMutex();
+
         geometry_msgs::Twist cmd_msg;
+        pMutex->lock();
         cmd_msg.linear.x = m_speed;
         cmd_msg.angular.z = m_angle;
+        pMutex->unlock();
 
         sim_velocity.publish(cmd_msg);
         ros::spinOnce();
         loop_rate.sleep();
+        delete pMutex;
     }//do ros things.
 }
 

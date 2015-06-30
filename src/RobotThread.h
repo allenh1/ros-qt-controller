@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QStringList>
 #include <stdlib.h>
+#include <QMutex>
 #include <iostream>
 #include "assert.h"
 
