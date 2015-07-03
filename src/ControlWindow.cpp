@@ -57,7 +57,7 @@ ControlWindow::ControlWindow(int argc, char **argv, QWidget *parent)
     p_xDisplay->setText(tr("0.0"));
 
     p_yLabel = new QLabel();
-    p_yLabel->setText(tr("Y:");
+    p_yLabel->setText(tr("Y:"));
     p_yDisplay = new QLineEdit();
     p_yDisplay->setText(tr("0.0"));
 
