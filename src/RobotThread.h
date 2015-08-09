@@ -1,8 +1,8 @@
 #ifndef ___ROBOTTHREAD_H___
 #define ___ROBOTTHREAD_H___
 
+#include <QtCore>
 #include <QThread>
-#include <QObject>
 #include <QStringList>
 #include <stdlib.h>
 #include <QMutex>
@@ -11,13 +11,10 @@
 
 #include <ros/ros.h>
 #include <ros/network.h>
-#include <sensor_msgs/LaserScan.h>
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 
-namespace server {
-
-class RobotThread : public QThread {
+class RobotThread : public QObject {
 	Q_OBJECT
 public:
     RobotThread(int argc, char **pArgv, const char * topic  = "/odom");
@@ -35,7 +32,8 @@ public:
 
 	void SetSpeed(double speed, double angle);
     void setPose(QList<double> to_set);
-    void run();
+
+    Q_SLOT void run();
 
     Q_SIGNAL void newPose(double,double,double);
 private:
@@ -53,12 +51,10 @@ private:
     double m_maxRange;
     double m_minRange;
 
-    QList<double> ranges;
+    QThread * m_pThread;
 
     ros::Subscriber pose_listener;
-    ros::Subscriber scan_listener;
     ros::Publisher  sim_velocity;
 };
-}//end namespace
 #endif
 

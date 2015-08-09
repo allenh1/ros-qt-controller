@@ -106,16 +106,15 @@ ControlWindow::ControlWindow(int argc, char **argv, QWidget *parent)
 
     setWindowTitle(tr("Control Window"));
 
-    connect(p_quitButton, SIGNAL(clicked()), this, SLOT(close()));
-    connect(p_upButton, SIGNAL(clicked()), this, SLOT(goForward()));
-    connect(p_leftButton, SIGNAL(clicked()), this, SLOT(goLeft()));
-    connect(p_rightButton, SIGNAL(clicked()), this, SLOT(goRight()));
-    connect(p_downButton, SIGNAL(clicked()), this, SLOT(goBackward()));
-    connect(p_stopButton, SIGNAL(clicked()), this, SLOT(halt()));
-    connect(&m_RobotThread, SIGNAL(newPose(double,double,double)), 
-             this, SLOT(updatePoseDisplay(double,double,double)));
+    connect(p_quitButton,  &QPushButton::clicked, this, &ControlWindow::close);
+    connect(p_upButton,    &QPushButton::clicked, this, &ControlWindow::goForward);
+    connect(p_leftButton,  &QPushButton::clicked, this, &ControlWindow::goLeft);
+    connect(p_rightButton, &QPushButton::clicked, this, &ControlWindow::goRight);
+    connect(p_downButton,  &QPushButton::clicked, this, &ControlWindow::goBackward);
+    connect(p_stopButton,  &QPushButton::clicked, this, &ControlWindow::halt);
+    
+    connect(&m_RobotThread, &RobotThread::newPose, this, &ControlWindow::updatePoseDisplay);
     m_RobotThread.init();
-    m_RobotThread.start();
 }//end constructor
 
 void ControlWindow::goForward(){m_RobotThread.SetSpeed(0.25, 0);}
